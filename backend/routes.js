@@ -1,9 +1,10 @@
 import express from 'express';
 import User from './model.js';
 import jwt from 'jsonwebtoken';
+import dotenv from "dotenv";
 
 const router = express.Router();
-
+dotenv.config();
 // Register
 router.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
@@ -14,7 +15,6 @@ router.post('/register', async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 });
-
 // Login
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
