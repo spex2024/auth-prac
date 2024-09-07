@@ -1,13 +1,8 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(req) {
-    // Get cookies from the request headers
-    const cookieHeader = req.headers.get('cookie');
-    const cookies = cookieHeader ? parseCookies(cookieHeader) : {};
+    const token = req.cookies.get('token')?.value; // Use the Next.js cookies API
 
-    const token = cookies.token; // Adjust this if your token is stored under a different key
-
-    console.log('Cookies:', cookies); // Debugging: Log all cookies
     console.log('Token:', token); // Debugging: Log the token
 
     if (token) {
@@ -19,18 +14,6 @@ export function middleware(req) {
     }
 }
 
-// Helper function to parse cookies from the cookie header
-function parseCookies(cookieHeader) {
-    const cookies = {};
-    cookieHeader.split(';').forEach(cookie => {
-        const [name, value] = cookie.split('=');
-        if (name && value) {
-            cookies[name.trim()] = value.trim();
-        }
-    });
-    return cookies;
-}
-
 export const config = {
-    matcher: '/', // Adjust this to match the paths you want to protect
+    matcher: ['/', '/home', '/dashboard', '/profile'], // Adjust paths to match the routes you want to protect
 };
