@@ -20,7 +20,7 @@ app.use(session({
     cookie: { secure: process.env.NODE_ENV === 'production' },
 }));
 app.use(cors({
-    origin: process.env.NODE_ENV === 'development' ? ['http://localhost:3000'] : ['https://your-production-domain.com'],
+    origin: process.env.NODE_ENV === 'development' ? ['http://localhost:3000'] : ['https://main.d1uttamemr9hsi.amplifyapp.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
