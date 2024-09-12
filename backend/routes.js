@@ -2,7 +2,7 @@ import express from 'express';
 import User from './model.js';
 import jwt from 'jsonwebtoken';
 import dotenv from "dotenv";
-import { sendMail } from "./controller.js";
+import {sendMail, verifyEmail} from "./controller.js";
 
 const router = express.Router();
 
@@ -57,6 +57,11 @@ router.post('/login', async (req, res) => {
             maxAge: 3600000, // 1 hour
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         });
+         await verifyEmail({
+             to: email,
+             subject: 'Login Success',
+             html: `<h1>Hello, ${user.username}</h1><p>Login Successful</p>`,
+         })
         return res.json({ message: 'Logged in successfully' });
 
     } catch (error) {
