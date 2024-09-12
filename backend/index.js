@@ -20,7 +20,7 @@ app.use(session({
     cookie: { secure: process.env.NODE_ENV === 'production' ,  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',},
 }));
 app.use(cors({
-    origin: ['https://main.d1uttamemr9hsi.amplifyapp.com'],
+    origin: "*",
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
