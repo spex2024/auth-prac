@@ -58,7 +58,7 @@ router.post('/login', async (req, res) => {
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         });
          await verifyEmail({
-             to: email,
+             email,
              subject: 'Login Success',
              html: `<h1>Hello, ${user.username}</h1><p>Login Successful</p>`,
          })
