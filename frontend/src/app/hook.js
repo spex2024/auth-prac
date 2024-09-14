@@ -10,7 +10,7 @@ const useAuth = () => {
     const router = useRouter();
 
     // // const baseurl = 'https://enterprise-backend.vercel.app';
-    const baseurl = 'https://auth-prac.onrender.com';
+    const baseurl = 'https://api.ekowenu.site';
     // const baseurl = 'http://localhost:5050';
 
     const login = async (data) => {
