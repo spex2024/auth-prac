@@ -76,11 +76,15 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
     // Clear the JWT cookie
     res.cookie('token', '', {
+        domain: '.ekowenu.site',  // Ensure this matches the domain used when setting the token
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        expires: new Date(0),
+        secure: process.env.NODE_ENV === 'production', // Secure cookie for production
+        maxAge: 0,  // Setting maxAge to 0 to clear the cookie
+        sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'strict',
     });
-    return res.json({ message: 'Logged out successfully' });
+
+    return res.status(200).json({ message: 'Logged out successfully' });
 });
+
 
 export default router;
