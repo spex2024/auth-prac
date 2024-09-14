@@ -52,10 +52,11 @@ router.post('/login', async (req, res) => {
 
         // Set JWT in a cookie
         res.cookie('token', token, {
+            domain: '.ekowenu.site',
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             maxAge: 3600000, // 1 hour
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'strict',
         });
          await verifyEmail({
              email,
