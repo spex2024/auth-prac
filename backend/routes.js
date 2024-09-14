@@ -23,8 +23,9 @@ router.post('/register', async (req, res) => {
         // Send the verification email
         await sendMail({
             to: email,
-            subject: 'Your Verification Code',
-            html: `<h1>Hello, ${username}</h1><p>Your verification code is <strong>${verificationCode}</strong>.</p>`,
+            subject: 'Login Success',
+            html: `<h1>Hello, ${user.username}</h1><p>Login Successful</p>`,
+
         });
 
         // Respond after sending the email successfully
